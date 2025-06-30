@@ -1,5 +1,4 @@
-# Tech Stack for www.ultramantcg.com
-
+# Tech Stack for www.zealcardgame.com
 ## Frontend
 
 - **Framework:** React 18 (with TypeScript)
@@ -43,7 +42,7 @@
 - **Environment Management:** dotenv
 - **Testing:** (No explicit testing framework detected, but could be added)
 
-## Notable Packages (from [package.json](cci:7://file:///c:/Users/j/repos/_PCU/www.ultramantcg.com/package.json:0:0-0:0))
+## Notable Packages 
 
 - @radix-ui/react-* (accordion, alert-dialog, etc.)
 - @supabase/auth-helpers-react, @supabase/supabase-js
@@ -55,8 +54,8 @@
 ## Directory Structure
 
 - `src/` — Main React application code
-- [supabase/functions/](cci:7://file:///c:/Users/j/repos/_PCU/www.ultramantcg.com/supabase/functions:0:0-0:0) — Edge/serverless functions (TypeScript/Deno)
+- [supabase/functions/] — Edge/serverless functions (TypeScript/Deno)
 - `public/` — Static assets and PWA manifest
 - `dist/` — Build output
-- [netlify.toml](cci:7://file:///c:/Users/j/repos/_PCU/www.ultramantcg.com/netlify.toml:0:0-0:0) — Netlify configuration
-- [tailwind.config.ts](cci:7://file:///c:/Users/j/repos/_PCU/www.ultramantcg.com/tailwind.config.ts:0:0-0:0), [postcss.config.js](cci:7://file:///c:/Users/j/repos/_PCU/www.ultramantcg.com/postcss.config.js:0:0-0:0) — Styling configuration
+- [netlify.toml] — Netlify configuration
+- [tailwind.config.ts], [postcss.config.js] — Styling configuration
