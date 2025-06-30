@@ -1,0 +1,21 @@
+{
+  "name": "Zeal TCG",
+  "short_name": "Zeal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "description": "Zeal is an epic trading card game.",
+  "icons": [
+    {
+      "src": "https://media.zealtcg.com/assets/iconZeal.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://media.zealtcg.com/assets/iconZeal.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

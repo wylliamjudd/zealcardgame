@@ -1,0 +1,132 @@
+
+create table public.deck (
+  deck_id serial not null,
+  profile_id uuid not null,
+  name character varying(100) not null,
+  created_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  constraint deck_pkey primary key (deck_id),
+  constraint deck_profile_id_fkey foreign KEY (profile_id) references profiles (id) on delete CASCADE
+) TABLESPACE pg_default;
+
+create index IF not exists idx_deck_profile_id on public.deck using btree (profile_id) TABLESPACE pg_default;
+
+create table public.card_master (
+  card_master_id serial not null,
+  parent_id integer null,
+  name character varying(100) not null,
+  global_id character varying(100) not null,
+  card_decoration_id integer null default 1,
+  rarity character varying(20) not null,
+  created_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  constraint card_master_pkey primary key (card_master_id),
+  constraint card_master_card_master_id_key unique (card_master_id),
+  constraint unique_card_variant unique (global_id),
+  constraint card_master_card_decoration_id_fkey foreign KEY (card_decoration_id) references card_decoration (card_decoration_id),
+  constraint card_master_parent_id_fkey foreign KEY (parent_id) references card_master (card_master_id) on delete set null
+) TABLESPACE pg_default;
+
+create index IF not exists idx_card_master_parent_id on public.card_master using btree (parent_id) TABLESPACE pg_default;
+
+create table public.card_master_media (
+  media_id serial not null,
+  card_master_id integer not null,
+  url text not null,
+  media_type character varying(20) not null,
+  isdefault boolean null default false,
+  isthumbnail boolean null default false,
+  display_order integer null default 0,
+  alt_text text null,
+  created_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  updated_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  constraint card_master_media_pkey primary key (media_id),
+  constraint card_master_media_media_id_key unique (media_id),
+  constraint card_master_media_card_master_id_fkey foreign KEY (card_master_id) references card_master (card_master_id) on delete CASCADE,
+  constraint card_master_media_media_type_check check (
+    (
+      (media_type)::text = any (
+        array[
+          ('image'::character varying)::text,
+          ('video'::character varying)::text,
+          ('animated_gif'::character varying)::text,
+          ('audio'::character varying)::text,
+          ('other'::character varying)::text
+        ]
+      )
+    )
+  )
+) TABLESPACE pg_default;
+
+
+create index IF not exists idx_card_master_media_card_master_id on public.card_master_media using btree (card_master_id) TABLESPACE pg_default;
+
+create index IF not exists idx_card_master_media_isthumbnail on public.card_master_media using btree (isthumbnail) TABLESPACE pg_default;
+
+
+
+create table public.card (
+  card_id serial not null,
+  deck_id integer not null,
+  card_master_id integer not null,
+  created_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  constraint card_pkey primary key (card_id),
+  constraint card_card_master_id_fkey foreign KEY (card_master_id) references card_master (card_master_id) on delete RESTRICT,
+  constraint card_deck_id_fkey foreign KEY (deck_id) references deck (deck_id) on delete CASCADE
+) TABLESPACE pg_default;
+
+create index IF not exists idx_card_deck_id on public.card using btree (deck_id) TABLESPACE pg_default;
+
+create index IF not exists idx_card_card_master_id on public.card using btree (card_master_id) TABLESPACE pg_default;
+
+
+
+create table public.card_media (
+  media_id serial not null,
+  card_id integer not null,
+  url text not null,
+  media_type character varying(20) not null,
+  isdefault boolean null default false,
+  isthumbnail boolean null default false,
+  display_order integer null default 0,
+  alt_text text null,
+  created_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  updated_at timestamp without time zone null default CURRENT_TIMESTAMP,
+  constraint card_media_pkey primary key (media_id),
+  constraint card_media_card_id_fkey foreign KEY (card_id) references card (card_id) on delete CASCADE,
+  constraint card_media_media_type_check check (
+    (
+      (media_type)::text = any (
+        array[
+          ('image'::character varying)::text,
+          ('video'::character varying)::text,
+          ('animated_gif'::character varying)::text,
+          ('audio'::character varying)::text,
+          ('other'::character varying)::text
+        ]
+      )
+    )
+  )
+) TABLESPACE pg_default;
+
+create index IF not exists idx_card_media_card_id on public.card_media using btree (card_id) TABLESPACE pg_default;
+
+create index IF not exists idx_card_media_isthumbnail on public.card_media using btree (isthumbnail) TABLESPACE pg_default;
+
+create table public.card_decoration (
+  card_decoration_id serial not null,
+  name character varying(50) not null,
+  description text null,
+  url text null,
+  constraint card_decoration_pkey primary key (card_decoration_id),
+  constraint card_decoration_name_key unique (name)
+) TABLESPACE pg_default;
+
+create index IF not exists idx_card_decoration_name on public.card_decoration using btree (name) TABLESPACE pg_default;
+
+create table public.card_playmat (
+  id integer generated by default as identity not null,
+  created_at timestamp with time zone not null default now(),
+  profile_id uuid null,
+  url text null,
+  constraint card_playmat_pkey primary key (id),
+  constraint card_playmat_id_key unique (id)
+) TABLESPACE pg_default;
