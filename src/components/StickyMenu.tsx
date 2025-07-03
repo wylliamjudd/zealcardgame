@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAudio } from './AudioContext';
 import { useAuth } from '../contexts/AuthContext';
-import { useAuthorization } from '../hooks/useAuthorization';
 
-const logo = 'https://media.zealtcg.com/assets/logoZeal.png';
+const logo = '/logoZeal.png';
 const icon = 'https://media.zealtcg.com/assets/iconZeal.png';
 
 const menuPanes = [
@@ -13,7 +12,13 @@ const menuPanes = [
     id: 'zeal',
     showMobile: true,
     icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      {/* <!-- Rotated square (diamond) --> */}
+      <path d="M12 2 L22 12 L12 22 L2 12 Z" />
+      
+      {/* <!-- Z shape inside the square --> */}
+      <path d="M8 8h8L8 16h8" />
+    </svg>
     )
   },
   {
@@ -142,7 +147,7 @@ const StickyMenu: React.FC<StickyMenuProps> = ({ scrollToPaneById, activePaneId 
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-black bg-opacity-80 backdrop-blur-md z-50 shadow-lg border-b border-neutral-800 overflow-hidden">
-      <div className="w-full h-full flex items-center px-4 overflow-x-hidden">
+      <div className="w-full h-full flex items-center px-4 overflow-hidden">
         {/* Logo/Icon - responsive */}
         <Link
   to="/"
@@ -155,7 +160,7 @@ const StickyMenu: React.FC<StickyMenuProps> = ({ scrollToPaneById, activePaneId 
     // else let Link handle navigation
   }}
 >
-  <img src={isMobileView ? icon : logo} alt="Zeal TCG Logo" className="h-9" />
+  <img src={logo} alt="Zeal TCG Logo" className="h-9" style={{zoom: 5, objectFit: "cover", width: 25}}/>
 </Link>
 
         {/* Navigation Menu - full width */}
