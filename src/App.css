@@ -1,0 +1,144 @@
+#root {
+  width: 100%;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-1rem);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-up {
+  animation: fadeUp 6s ease-out forwards;
+}
+
+.appear {
+  animation: appear 1s ease-out forwards;
+  animation-delay: 3s;
+}
+
+.email-background {
+  top: 100vh;
+  height: 100vh;
+  position: relative;
+}
+
+.email-section {
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  padding: 1rem 2rem;
+  background: #242424cc;
+  overflow: hidden;
+}
+
+.email-section .form {
+  display: flex;
+  gap: 1rem;
+  min-width: 50%;
+  margin-top: 2rem;
+}
+
+.email-section input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: whitesmoke;
+  text-align: center;
+  color: black;
+}
+
+.email-section button {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  font-weight: bold;
+  background: #3ee3e3;
+  border-radius: 2rem;
+  border: none;
+  box-shadow: 0 0 8px #00ffff;
+  color: black;
+  transition: box-shadow 0.4s, background 0.4s;
+}
+
+.email-section button:hover {
+  background: #00ffff;
+  box-shadow: 0 0 16px #00ffff;
+}
+
+.scroll-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  opacity: 0;
+  font-size: 1rem;
+  transition: background 0.4s;
+}
+
+.scroll-button:hover {
+  background: white;
+}
+
+@media (max-width: 500px) {
+  .email-section .form {
+    flex-wrap: wrap;
+  }
+  .email-section button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .email-section .form {
+    min-width: 100%;
+  }
+  .email-section h1,
+  .email-section h2 {
+    font-size: 1.25rem;
+  }
+}
