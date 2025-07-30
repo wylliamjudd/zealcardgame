@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.background {
+.hero-section {
   position: fixed;
   top: 0;
   left: 0;
@@ -43,9 +43,23 @@
   animation: fadeUp 6s ease-out forwards;
 }
 
-.appear {
+.scroll-button {
   animation: appear 1s ease-out forwards;
   animation-delay: 3s;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  opacity: 0;
+  font-size: 1rem;
+  transition: background 0.4s;
 }
 
 .email-background {
@@ -69,14 +83,14 @@
   overflow: hidden;
 }
 
-.email-section .form {
+.email-form {
   display: flex;
   gap: 1rem;
   min-width: 50%;
   margin-top: 2rem;
 }
 
-.email-section input {
+.email-input {
   flex: 1;
   padding: 0.75rem;
   font-size: 1rem;
@@ -85,7 +99,7 @@
   color: black;
 }
 
-.email-section button {
+.email-button {
   padding: 1rem 2rem;
   font-size: 1.125rem;
   cursor: pointer;
@@ -98,26 +112,9 @@
   transition: box-shadow 0.4s, background 0.4s;
 }
 
-.email-section button:hover {
+.email-button:hover {
   background: #00ffff;
   box-shadow: 0 0 16px #00ffff;
-}
-
-.scroll-button {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 2rem;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.5);
-  font-weight: bold;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  cursor: pointer;
-  opacity: 0;
-  font-size: 1rem;
-  transition: background 0.4s;
 }
 
 .scroll-button:hover {
@@ -125,20 +122,27 @@
 }
 
 @media (max-width: 500px) {
-  .email-section .form {
+  .email-form {
     flex-wrap: wrap;
   }
-  .email-section button {
+  .email-button {
     width: 100%;
   }
 }
 
 @media (max-width: 1000px) {
-  .email-section .form {
+  .email-form {
     min-width: 100%;
   }
   .email-section h1,
   .email-section h2 {
     font-size: 1.25rem;
   }
+}
+
+.status-message {
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: opacity 0.3s;
+  color: lightgreen;
 }
