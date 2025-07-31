@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function Verified() {
+export default function Verify() {
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState("verifying");
   const token = searchParams.get("token");
