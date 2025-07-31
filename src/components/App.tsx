@@ -1,12 +1,12 @@
-import "../styles.css";
-import EmailSection from "./EmailSection";
-import HeroSection from "./HeroSection";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Verified from "./Verified";
 
 export default function App() {
   return (
-    <div>
-      <HeroSection />
-      <EmailSection />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/verified" element={<Verified />} />
+    </Routes>
   );
 }
