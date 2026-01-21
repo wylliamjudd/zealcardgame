@@ -62,13 +62,14 @@
   transition: background 0.4s;
 }
 
-.email-background {
+.section-background {
   top: 100vh;
   height: 100vh;
   position: relative;
 }
 
-.email-section {
+.about-section,
+.signup-section {
   color: white;
   position: relative;
   display: flex;
@@ -109,7 +110,9 @@
   border: none;
   box-shadow: 0 0 8px #00ffff;
   color: black;
-  transition: box-shadow 0.4s, background 0.4s;
+  transition:
+    box-shadow 0.4s,
+    background 0.4s;
 }
 
 .email-button:hover {
@@ -145,4 +148,24 @@
   font-weight: bold;
   transition: opacity 0.3s;
   color: lightgreen;
+}
+
+.header {
+  animation: appear 1s ease-out forwards;
+  animation-delay: 3s;
+  opacity: 0;
+  position: fixed;
+  color: white;
+  top: 16px;
+  right: 32px;
+  z-index: 2;
+}
+
+p {
+  font-size: 20px;
+  width: 50%;
+}
+
+a {
+  cursor: pointer;
 }
