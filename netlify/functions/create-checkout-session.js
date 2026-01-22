@@ -11,6 +11,8 @@ exports.handler = async event => {
     return { statusCode: 400, body: "Missing email" };
   }
 
+  console.log(email);
+
   const siteUrl = process.env.SITE_URL;
   const priceId = process.env.STRIPE_PRICE_ID;
 
