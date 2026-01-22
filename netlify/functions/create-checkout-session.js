@@ -8,8 +8,8 @@ exports.handler = async event => {
 
   // Expect the client to send user_id (and maybe email) so the webhook can grant access.
   // You can also validate Supabase auth JWT here later if you want.
-  const { user_id, email } = JSON.parse(event.body || "{}");
-  if (!user_id) {
+  const { email } = JSON.parse(event.body || "{}");
+  if (!email) {
     return { statusCode: 400, body: "Missing user_id" };
   }
 
@@ -23,8 +23,7 @@ exports.handler = async event => {
     success_url: `${siteUrl}/paid?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/`,
     metadata: {
-      supabase_user_id: user_id,
-      supabase_email: email || "",
+      email,
     },
   });
 
