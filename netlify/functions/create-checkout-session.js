@@ -17,8 +17,8 @@ exports.handler = async event => {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: siteUrl,
-    cancel_url: siteUrl,
+    success_url: `${siteUrl}/`,
+    cancel_url: `${siteUrl}/`,
     metadata: {
       email,
     },
