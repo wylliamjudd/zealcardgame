@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async event => {
@@ -11,8 +12,6 @@ exports.handler = async event => {
     return { statusCode: 400, body: "Missing email" };
   }
 
-  console.log(email);
-
   const siteUrl = process.env.SITE_URL;
   const priceId = process.env.STRIPE_PRICE_ID;
 
@@ -21,9 +20,7 @@ exports.handler = async event => {
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: `${siteUrl}/`,
     cancel_url: `${siteUrl}/`,
-    metadata: {
-      email,
-    },
+    customer_email: email,
   });
 
   return {
