@@ -15,7 +15,7 @@ export default function PaymentSection({ email }: Props) {
       },
     );
 
-    const url = await response.json();
+    const { url } = await response.json();
 
     window.location.assign(url);
   }
