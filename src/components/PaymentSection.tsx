@@ -1,24 +1,16 @@
-import { useState } from "react";
-import { supabase } from "../lib/supabaseClient";
-
 type Props = {
   email: string | null;
 };
 
 export default function PaymentSection({ email }: Props) {
   async function startCheckout() {
-    const response = await fetch(
-      "/.netlify/functions/create-checkout-session",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-        }),
-      },
-    );
-
-    const { url } = await response.json();
+    const { url } = await fetch("/.netlify/functions/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+      }),
+    });
 
     window.location.assign(url);
   }
@@ -26,7 +18,7 @@ export default function PaymentSection({ email }: Props) {
   return (
     <div className="section-background">
       <img src="Formic-Commander.jpg" className="background-image" />
-      <div className="payment-section">
+      <div className="signup-section">
         <h1>Payment Section</h1>
         <button className="email-button" onClick={startCheckout}>
           Get Print & Play
