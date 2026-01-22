@@ -1,13 +1,15 @@
 type Props = {
-  signedIn: boolean;
+  email: string | null;
 };
 
-export default function AboutSection({ signedIn }: Props) {
+export default function AboutSection({ email }: Props) {
   const scrollDown = () => {
     document
-      .querySelector(".signup-section")
+      .querySelector(email ? ".payment-section" : ".signup-section")
       ?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const scrollText = email ? "Play now" : "Sign up";
 
   return (
     <div className="section-background">
@@ -31,11 +33,9 @@ export default function AboutSection({ signedIn }: Props) {
           & Play edition is available for $1.
         </p>
       </div>
-      {signedIn ? null : (
-        <button className="scroll-button" onClick={scrollDown}>
-          Sign up
-        </button>
-      )}
+      <button className="scroll-button" onClick={scrollDown}>
+        {scrollText}
+      </button>
     </div>
   );
 }

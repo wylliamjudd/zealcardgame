@@ -1,20 +1,23 @@
 import { supabase } from "../lib/supabaseClient";
 
 type Props = {
-  signedIn: boolean;
-  setSignedIn: (signedIn: boolean) => void;
+  email: string | null;
+  setEmail: (email: string | null) => void;
 };
 
-export default function Header({ signedIn, setSignedIn }: Props) {
+export default function Header({ email, setEmail }: Props) {
   const scrollDown = () => {
     document
       .querySelector(".signup-section")
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const signOut = async () => await supabase.auth.signOut();
+  const signOut = async () => {
+    setEmail(null);
+    await supabase.auth.signOut();
+  };
 
-  if (signedIn) {
+  if (email) {
     return (
       <a className="header" onClick={signOut}>
         Sign out

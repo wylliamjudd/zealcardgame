@@ -5,13 +5,14 @@ import SignUpSection from "./SignUpSection";
 import { supabase } from "../lib/supabaseClient";
 import { useEffect, useState } from "react";
 import Header from "./Header";
+import PaymentSection from "./PaymentSection";
 
 export default function Home() {
-  const [signedIn, setSignedIn] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
 
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
-    setSignedIn(!!data.session);
+    setEmail(data.session?.user.email || null);
   };
 
   useEffect(() => {
@@ -20,10 +21,10 @@ export default function Home() {
 
   return (
     <div>
-      <Header signedIn={signedIn} setSignedIn={setSignedIn} />
+      <Header email={email} setEmail={setEmail} />
       <HeroSection />
-      <AboutSection signedIn={signedIn} />
-      {signedIn ? null : <SignUpSection />}
+      <AboutSection email={email} />
+      {email ? <PaymentSection email={email} /> : <SignUpSection />}
     </div>
   );
 }
