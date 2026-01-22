@@ -7,20 +7,18 @@ type Props = {
 
 export default function PaymentSection({ email }: Props) {
   async function startCheckout() {
-    const { data } = await supabase.auth.getUser();
-    const email = data.user?.email;
+    const response = await fetch(
+      "/.netlify/functions/create-checkout-session",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+        }),
+      },
+    );
 
-    if (!email) {
-      return;
-    }
-
-    const { url } = await fetch("/.netlify/functions/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-      }),
-    });
+    const { url } = await response.json();
 
     window.location.assign(url);
   }

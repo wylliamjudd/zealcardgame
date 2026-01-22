@@ -6,17 +6,14 @@ exports.handler = async event => {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  // Expect the client to send user_id (and maybe email) so the webhook can grant access.
-  // You can also validate Supabase auth JWT here later if you want.
   const { email } = JSON.parse(event.body || "{}");
   if (!email) {
-    return { statusCode: 400, body: "Missing user_id" };
+    return { statusCode: 400, body: "Missing email" };
   }
 
-  const siteUrl = process.env.SITE_URL; // e.g. http://localhost:3000 or https://zealcardgame.com
+  const siteUrl = process.env.SITE_URL;
   const priceId = process.env.STRIPE_PRICE_ID;
 
-  // Stripe Checkout Session creation (server-side). :contentReference[oaicite:3]{index=3}
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: [{ price: priceId, quantity: 1 }],
