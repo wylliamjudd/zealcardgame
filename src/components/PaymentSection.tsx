@@ -26,7 +26,7 @@ export default function PaymentSection({ email }: Props) {
   return (
     <div className="section-background">
       <img src="Formic-Commander.jpg" className="background-image" />
-      <div className="signup-section">
+      <div className="payment-section">
         <h1>Payment Section</h1>
         <button className="email-button" onClick={startCheckout}>
           Get Print & Play
