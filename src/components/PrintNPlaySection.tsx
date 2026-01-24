@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 
 export default function PrintNPlaySection() {
-  useEffect(() => document.querySelector("#print-n-play")?.scrollIntoView());
+  useEffect(() => {
+    if (window.location.hash === "#print-n-play") {
+      document.querySelector("#print-n-play")?.scrollIntoView();
+    }
+  });
 
   return (
     <div className="section-background">
