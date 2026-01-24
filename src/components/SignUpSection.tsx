@@ -3,11 +3,13 @@ import { supabase } from "../lib/supabaseClient";
 
 export default function SignUpSection() {
   const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
 
   const onChangeEmail = (input: string) => setEmail(input.toLowerCase());
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setSending(true);
 
     if (!email.includes("@")) {
       return alert("Please enter a valid email address.");
@@ -23,9 +25,11 @@ export default function SignUpSection() {
     });
 
     if (error) {
+      setSending(false);
       return alert(error);
     }
 
+    setSending(false);
     alert("A link was sent to your email");
     setEmail("");
   };
@@ -49,8 +53,17 @@ export default function SignUpSection() {
             value={email}
             onChange={event => onChangeEmail(event.target.value)}
           />
-          <button className="email-button" type="submit">
-            Send link
+          <button className="email-button" type="submit" disabled={sending}>
+            {sending ? (
+              <span className="sending" aria-live="polite">
+                <span className="dot" />
+                <span className="dot" />
+                <span className="dot" />
+                <span className="srOnly">Sending…</span>
+              </span>
+            ) : (
+              "Send link"
+            )}{" "}
           </button>
         </form>
       </div>
