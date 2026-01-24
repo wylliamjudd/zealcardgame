@@ -30,8 +30,8 @@ export default function AboutSection({ email }: Props) {
           Sign up to follow the project, and for $1 you can get a print & play
           version and play now.
         </p>
-        <h1>Kickstarter coming soon...</h1>
-        <h1>Print & Play available now!</h1>
+        <h2>Kickstarter coming soon...</h2>
+        <h2>Print & Play available now!</h2>
       </div>
       <button className="scroll-button" onClick={scrollDown}>
         {scrollText}
