@@ -164,7 +164,7 @@
 
 p {
   font-size: 20px;
-  width: 50%;
+  max-width: 520px;
 }
 
 a {
