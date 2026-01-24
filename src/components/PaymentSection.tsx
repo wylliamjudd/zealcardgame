@@ -1,9 +1,15 @@
+import { useState } from "react";
+import Loading from "./Loading";
+
 type Props = {
   email: string | null;
 };
 
 export default function PaymentSection({ email }: Props) {
+  const [loading, setLoading] = useState(false);
+
   async function startCheckout() {
+    setLoading(true);
     const response = await fetch(
       "/.netlify/functions/create-checkout-session",
       {
@@ -18,6 +24,7 @@ export default function PaymentSection({ email }: Props) {
     const { url } = await response.json();
 
     window.location.assign(url);
+    setLoading(false);
   }
 
   return (
@@ -38,8 +45,12 @@ export default function PaymentSection({ email }: Props) {
         </p>
         <p>Gameplay is fully intact. This edition is about function first.</p>
         <p />
-        <button className="email-button" onClick={startCheckout}>
-          Get Print & Play for $1
+        <button
+          className="email-button"
+          onClick={startCheckout}
+          disabled={loading}
+        >
+          {loading ? <Loading /> : "Get Print & Play for $1"}
         </button>
       </div>
     </div>

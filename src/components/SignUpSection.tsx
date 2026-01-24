@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import Loading from "./Loading";
 
 export default function SignUpSection() {
   const [email, setEmail] = useState("");
@@ -54,16 +55,7 @@ export default function SignUpSection() {
             onChange={event => onChangeEmail(event.target.value)}
           />
           <button className="email-button" type="submit" disabled={sending}>
-            {sending ? (
-              <span className="sending" aria-live="polite">
-                <span className="dot" />
-                <span className="dot" />
-                <span className="dot" />
-                <span className="srOnly">Sending…</span>
-              </span>
-            ) : (
-              "Send link"
-            )}{" "}
+            {sending ? <Loading /> : "Send link"}
           </button>
         </form>
       </div>
