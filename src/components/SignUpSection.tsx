@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { supabase } from "../lib/supabaseClient";
 import Loading from "./Loading";
 
 export default function SignUpSection() {
@@ -16,23 +15,15 @@ export default function SignUpSection() {
       return alert("Please enter a valid email address.");
     }
 
-    await supabase.from("emails").insert({ email, verified: false });
-
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
-      },
+    await fetch("/.netlify/functions/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
     });
 
-    if (error) {
-      setSending(false);
-      return alert(error);
-    }
-
     setSending(false);
-    alert("A link was sent to your email");
     setEmail("");
+    alert("A link was sent to your email");
   };
 
   return (

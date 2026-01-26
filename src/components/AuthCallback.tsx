@@ -6,21 +6,7 @@ export default function AuthCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const authorize = async () => {
-      const { data } = await supabase.auth.getSession();
-      const email = data.session?.user.email;
-
-      if (email) {
-        await supabase.from("emails").upsert({
-          email,
-          verified: true,
-        });
-      }
-
-      navigate("/", { replace: true });
-    };
-
-    authorize();
+    navigate("/", { replace: true });
   });
 
   return <div>Signing you in...</div>;
