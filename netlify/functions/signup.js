@@ -1,6 +1,15 @@
 import MailerLite from "@mailerlite/mailerlite-nodejs";
 import { createClient } from "@supabase/supabase-js";
 
+const mailerlite = new MailerLite({
+  api_key: process.env.MAILERLITE_API_KEY,
+});
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SECRET_KEY,
+);
+
 export async function handler(event) {
   if (event.httpMethod !== "POST")
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -8,15 +17,7 @@ export async function handler(event) {
   const { email } = JSON.parse(event.body || "{}");
   if (!email) return { statusCode: 400, body: "Missing email" };
 
-  const mailerlite = new MailerLite({
-    api_key: process.env.MAILERLITE_API_KEY,
-  });
   await mailerlite.subscribers.createOrUpdate({ email });
-
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY,
-  );
 
   const { error } = await supabase.auth.signInWithOtp({
     email,
