@@ -8,6 +8,11 @@ export async function handler(event) {
   const { email } = JSON.parse(event.body || "{}");
   if (!email) return { statusCode: 400, body: "Missing email" };
 
+  const mailerlite = new MailerLite({
+    api_key: process.env.MAILERLITE_API_KEY,
+  });
+  await mailerlite.subscribers.createOrUpdate({ email });
+
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_ANON_KEY,
