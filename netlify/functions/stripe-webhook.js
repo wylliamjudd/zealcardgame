@@ -22,14 +22,15 @@ export async function handler(event) {
 
   if (type === "checkout.session.completed") {
     const { id, customer_email } = data.object;
-    await supabase
-      .from("emails")
-      .upsert({
-        email: customer_email
+    await supabase.from("emails").upsert(
+      {
+        email: customer_email,
         stripe_session_id: id,
-      }, {
-        onConflict: "email"
-      })
+      },
+      {
+        onConflict: "email",
+      },
+    );
   }
 
   return {
