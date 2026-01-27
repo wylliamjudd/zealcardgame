@@ -14,8 +14,7 @@ export default function Home() {
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
 
-    // setEmail(data.session?.user.email || null);
-    setEmail("wylliamjudd@gmail.com");
+    setEmail(data.session?.user.email || null);
   };
 
   useEffect(() => {
