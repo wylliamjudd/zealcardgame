@@ -1,8 +1,4 @@
-type Props = {
-  email: string | null;
-};
-
-export default function AboutSection({ email }: Props) {
+export default function AboutSection() {
   return (
     <div className="section-background">
       <img src="Nullmage-Warrior.jpg" className="background-image" />

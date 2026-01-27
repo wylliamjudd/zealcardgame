@@ -25,10 +25,10 @@ export default function Home() {
     <div>
       <Header email={email} setEmail={setEmail} />
       <HeroSection />
-      <AboutSection email={email} />
+      <AboutSection />
       {email ? null : <SignUpSection />}
       <PrintNPlaySection email={email} />
-      <Navigation />
+      <Navigation email={email} />
     </div>
   );
 }

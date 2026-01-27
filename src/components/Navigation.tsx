@@ -1,4 +1,8 @@
-export default function Navigation() {
+type Props = {
+  email: string | null;
+};
+
+export default function Navigation({ email }: Props) {
   const scrollTo = (destination: string) => {
     document.querySelector(destination)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -8,9 +12,11 @@ export default function Navigation() {
       <button className="scroll-button" onClick={() => scrollTo("#about")}>
         Learn more
       </button>
-      <button className="scroll-button" onClick={() => scrollTo("#signup")}>
-        Sign up
-      </button>
+      {email ? null : (
+        <button className="scroll-button" onClick={() => scrollTo("#signup")}>
+          Sign up
+        </button>
+      )}
       <button
         className="scroll-button"
         onClick={() => scrollTo("#print-n-play")}
