@@ -7,9 +7,7 @@ type Props = {
 
 export default function Header({ email, setEmail }: Props) {
   const scrollDown = () => {
-    document
-      .querySelector(".signup-section")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector("#signup")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const signOut = async () => {
