@@ -15,17 +15,17 @@ export default function PrintNPlaySection({ email }: Props) {
       .from("emails")
       .select("stripe_session_id")
       .eq("email", email)
-      .maybeSingle();
+      .single();
 
     setEntitled(!!session_data?.stripe_session_id);
   };
 
   useEffect(() => {
-    getSession();
+    if (email) getSession();
     if (window.location.hash === "#print-n-play") {
       document.querySelector("#print-n-play")?.scrollIntoView();
     }
-  }, []);
+  }, [email]);
 
   async function startCheckout() {
     setLoading(true);
