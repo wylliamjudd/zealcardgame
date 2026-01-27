@@ -24,10 +24,12 @@ export async function handler(event) {
     const { id, customer_email } = data.object;
     await supabase
       .from("emails")
-      .update({
+      .upsert({
+        email: customer_email
         stripe_session_id: id,
+      }, {
+        onConflict: "email"
       })
-      .eq("email", customer_email);
   }
 
   return {
