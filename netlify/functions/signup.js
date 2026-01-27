@@ -1,9 +1,4 @@
-import MailerLite from "@mailerlite/mailerlite-nodejs";
 import { createClient } from "@supabase/supabase-js";
-
-const mailerlite = new MailerLite({
-  api_key: process.env.MAILERLITE_API_KEY,
-});
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -11,14 +6,34 @@ const supabase = createClient(
 );
 
 export async function handler(event) {
-  if (event.httpMethod !== "POST")
-    return { statusCode: 405, body: "Method Not Allowed" };
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: corsHeaders(),
+      body: "Method Not Allowed",
+    };
+  }
 
   const { email } = JSON.parse(event.body || "{}");
-  if (!email) return { statusCode: 400, body: "Missing email" };
+  if (!email) {
+    return {
+      statusCode: 400,
+      body: "Missing email",
+    };
+  }
 
-  await mailerlite.subscribers.createOrUpdate({ email });
+  // 1) MailerLite: create / update subscriber
+  await fetch("https://connect.mailerlite.com/api/subscribers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.MAILERLITE_API_KEY}`,
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
 
+  // 2) Supabase: send magic link
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
@@ -26,7 +41,12 @@ export async function handler(event) {
     },
   });
 
-  if (error) return { statusCode: 400, body: error.message };
+  if (error) {
+    return {
+      statusCode: 400,
+      body: error.message,
+    };
+  }
 
   return {
     statusCode: 200,
