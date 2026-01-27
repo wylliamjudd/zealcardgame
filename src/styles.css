@@ -44,7 +44,6 @@
 }
 
 .scroll-button {
-  animation: appear 1s ease-out forwards;
   animation-delay: 3s;
   position: absolute;
   left: 50%;
@@ -57,7 +56,6 @@
   padding: 1rem 2rem;
   border-radius: 2rem;
   cursor: pointer;
-  opacity: 0;
   font-size: 1rem;
   transition: background 0.4s;
 }

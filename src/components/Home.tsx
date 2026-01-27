@@ -39,8 +39,15 @@ export default function Home() {
       <Header email={email} setEmail={setEmail} />
       <HeroSection />
       <AboutSection email={email} />
-      {email ? null : <SignUpSection />}
-      {entitled ? <PrintNPlaySection /> : <PaymentSection email={email} />}
+      {email ? (
+        entitled ? (
+          <PrintNPlaySection />
+        ) : (
+          <PaymentSection email={email} />
+        )
+      ) : (
+        <SignUpSection />
+      )}
     </div>
   );
 }
