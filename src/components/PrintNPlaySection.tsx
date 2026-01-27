@@ -1,16 +1,61 @@
-import { useEffect } from "react";
+import { supabase } from "../lib/supabaseClient";
+import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
-export default function PrintNPlaySection() {
+type Props = {
+  email: string | null;
+};
+
+export default function PrintNPlaySection({ email }: Props) {
+  const [loading, setLoading] = useState(false);
+  const [entitled, setEntitled] = useState(false);
+
+  const getSession = async () => {
+    const { data: session_data } = await supabase
+      .from("emails")
+      .select("stripe_session_id")
+      .eq("email", email)
+      .maybeSingle();
+
+    setEntitled(!!session_data?.stripe_session_id);
+  };
+
   useEffect(() => {
+    getSession();
     if (window.location.hash === "#print-n-play") {
       document.querySelector("#print-n-play")?.scrollIntoView();
     }
-  });
+  }, []);
+
+  async function startCheckout() {
+    setLoading(true);
+
+    const response = await fetch(
+      "/.netlify/functions/create-checkout-session",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+        }),
+      },
+    );
+    if (response.ok) {
+      const { url } = await response.json();
+      window.location.assign(url);
+    }
+
+    setLoading(false);
+  }
+
+  const scroll = () => {
+    document.querySelector("#signup")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="section-background">
       <img src="Priestess-of-the-Moon.jpg" className="background-image" />
-      <div className="payment-section" id="print-n-play">
+      <section id="print-n-play">
         <h1>Zeal: Print & Play Edition</h1>
         <p>This is the complete Print & Play version of Zeal.</p>
         <p>
@@ -25,10 +70,26 @@ export default function PrintNPlaySection() {
         </p>
         <p>Gameplay is fully intact. This edition is about function first.</p>
         <p />
-        <a className="email-button" href="/Zeal Print & Play.zip" download>
-          Download
-        </a>
-      </div>
+        {email ? (
+          entitled ? (
+            <a className="email-button" href="/Zeal Print & Play.zip" download>
+              Download
+            </a>
+          ) : (
+            <button
+              className="email-button"
+              onClick={startCheckout}
+              disabled={loading}
+            >
+              {loading ? <Loading /> : "Get Print & Play for $1"}
+            </button>
+          )
+        ) : (
+          <button className="email-button" onClick={scroll}>
+            Sign up to unlock Print & Play
+          </button>
+        )}
+      </section>
     </div>
   );
 }

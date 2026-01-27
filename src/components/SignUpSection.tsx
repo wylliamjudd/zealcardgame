@@ -29,7 +29,7 @@ export default function SignUpSection() {
   return (
     <div className="section-background">
       <img src="/Cnidarian-Lord.jpg" className="background-image" />
-      <div className="signup-section">
+      <section id="signup">
         <h1>Sign up / Sign in</h1>
         <p>We'll send a link to your email that signs you up.</p>
         <p>If you're returning, the link will sign you in.</p>
@@ -49,7 +49,7 @@ export default function SignUpSection() {
             {sending ? <Loading /> : "Send link"}
           </button>
         </form>
-      </div>
+      </section>
     </div>
   );
 }

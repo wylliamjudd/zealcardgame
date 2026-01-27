@@ -3,18 +3,10 @@ type Props = {
 };
 
 export default function AboutSection({ email }: Props) {
-  const scrollDown = () => {
-    document
-      .querySelector(email ? ".payment-section" : ".signup-section")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollText = email ? "Play now" : "Sign up";
-
   return (
     <div className="section-background">
       <img src="Nullmage-Warrior.jpg" className="background-image" />
-      <div className="about-section">
+      <section id="about">
         <h1>What is Zeal?</h1>
         <p>
           Zeal is a strategy card game for 2-8 players. In Zeal you recruit
@@ -24,15 +16,12 @@ export default function AboutSection({ email }: Props) {
           packs. Every card comes in one box.
         </p>
         <p>
-          Sign up to follow the project, and for $1 you can get a print & play
+          Sign up to follow the project, and for $1 you can get a Print & Play
           version and play now.
         </p>
         <h2>Coming soon to Kickstarter...</h2>
         <h2>Print & Play available now!</h2>
-      </div>
-      <button className="scroll-button" onClick={scrollDown}>
-        {scrollText}
-      </button>
+      </section>
     </div>
   );
 }

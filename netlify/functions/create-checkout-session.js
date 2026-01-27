@@ -3,11 +3,20 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function handler(event) {
-  if (event.httpMethod !== "POST")
-    return { statusCode: 405, body: "Method Not Allowed" };
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Method Not Allowed" }),
+    };
+  }
 
   const { email } = JSON.parse(event.body || "{}");
-  if (!email) return { statusCode: 400, body: "Missing email" };
+  if (!email) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Missing email" }),
+    };
+  }
 
   const siteUrl = process.env.SITE_URL;
   const priceId = process.env.STRIPE_PRICE_ID;
@@ -22,7 +31,6 @@ export async function handler(event) {
 
   return {
     statusCode: 200,
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url: session.url }),
   };
 }
