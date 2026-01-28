@@ -23,9 +23,5 @@ export default function Header({ email, setEmail }: Props) {
     );
   }
 
-  return (
-    <a className="header" onClick={scrollDown}>
-      Sign in
-    </a>
-  );
+  return null;
 }

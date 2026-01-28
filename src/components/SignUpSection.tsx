@@ -28,7 +28,7 @@ export default function SignUpSection() {
 
   return (
     <div className="section-background">
-      <img src="/Cnidarian-Lord.jpg" className="background-image" />
+      <img src="/Nullmage-Warrior.jpg" className="background-image" />
       <section id="signup">
         <h1>Sign up / Sign in</h1>
         <p>We'll send a link to your email that signs you up.</p>
