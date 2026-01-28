@@ -84,6 +84,7 @@
   color: white;
 }
 
+.what-is-zeal,
 .cognoid-section,
 .lunari-section,
 .magi-section,
@@ -101,32 +102,47 @@
   }
 }
 
+@media (max-width: 999px) {
+  .what-is-zeal,
+  .cognoid-section,
+  .lunari-section,
+  .magi-section,
+  .specter-section {
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .lunari-section,
+  .specter-section {
+    flex-direction: row-reverse;
+  }
+
+  .cognoid-section,
+  .magi-section {
+    object-position: left;
+  }
+}
+
 .cognoid-section {
   background: #003565;
   color: #9abaf6;
-  img {
-    object-position: left;
-  }
 }
 
 .lunari-section {
   background: #72090a;
   color: #ff9781;
-  flex-direction: row-reverse;
 }
 
 .magi-section {
   background: #754f0e;
   color: #deaf6e;
-  img {
-    object-position: left;
-  }
 }
 
 .specter-section {
   background: #5d0d57;
   color: #ef9ce5;
-  flex-direction: row-reverse;
 }
 
 .character {
@@ -150,11 +166,6 @@ section {
 .what-is-zeal {
   background: #3b3b3b;
   color: #b8b8b8;
-  display: flex;
-  padding: 1rem 0;
-  div {
-    flex: 1;
-  }
 }
 
 .email-form {
@@ -232,13 +243,6 @@ section {
   top: 16px;
   right: 32px;
   z-index: 2;
-}
-
-@media (min-width: 1000px) {
-  p {
-    font-size: 20px;
-    max-width: 520px;
-  }
 }
 
 a {
