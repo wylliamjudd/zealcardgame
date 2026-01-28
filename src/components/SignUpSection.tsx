@@ -41,6 +41,7 @@ export default function SignUpSection() {
           <input
             className="email-input"
             type="email"
+            autoComplete="username"
             placeholder="Enter your email"
             value={email}
             onChange={event => onChangeEmail(event.target.value)}
