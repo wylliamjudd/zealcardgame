@@ -1,7 +1,7 @@
 export default function AboutSection() {
   return (
     <div className="about-section" id="about">
-      <img className="page-texture" src="Page Texture.png" />
+      <img className="page-texture" src="Page-Texture.jpg" />
       <div className="what-is-zeal">
         <div />
         <div>
@@ -23,7 +23,7 @@ export default function AboutSection() {
         </div>
         <div />
       </div>
-      <img className="page-texture" src="Page Texture.png" />
+      <img className="page-texture" src="Page-Texture.jpg" />
       <div className="cognoid-section">
         <img className="character" src="Formic-Guardian-character.png" />
         <div>
@@ -45,7 +45,7 @@ export default function AboutSection() {
         </div>
         <img className="character" src="cognoid-cards.png" />
       </div>
-      <img className="page-texture" src="Page Texture.png" />
+      <img className="page-texture" src="Page-Texture.jpg" />
       <div className="lunari-section">
         <img className="character" src="Priestess-of-the-Moon-character.png" />
         <div>
@@ -67,7 +67,7 @@ export default function AboutSection() {
         </div>
         <img className="character" src="lunari-cards.png" />
       </div>
-      <img className="page-texture" src="Page Texture.png" />
+      <img className="page-texture" src="Page-Texture.jpg" />
       <div className="magi-section">
         <img className="character" src="Nullmage-Warrior-character.png" />
         <div>
@@ -88,7 +88,7 @@ export default function AboutSection() {
         </div>
         <img className="character" src="magi-cards.png" />
       </div>
-      <img className="page-texture" src="Page Texture.jpg" />
+      <img className="page-texture" src="Page-Texture.jpg" />
       <div className="specter-section">
         <img className="character" src="Cnidarian-Lord-character.png" />
         <div>
