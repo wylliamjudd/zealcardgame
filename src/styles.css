@@ -19,6 +19,14 @@
   overflow: hidden;
 }
 
+.page-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -89,6 +97,7 @@
 .lunari-section,
 .magi-section,
 .specter-section {
+  position: relative;
   display: flex;
   * {
     flex: 1;
@@ -127,22 +136,22 @@
 }
 
 .cognoid-section {
-  background: #003565;
+  background: #003565cc;
   color: #9abaf6;
 }
 
 .lunari-section {
-  background: #72090a;
+  background: #72090acc;
   color: #ff9781;
 }
 
 .magi-section {
-  background: #754f0e;
+  background: #754f0ecc;
   color: #deaf6e;
 }
 
 .specter-section {
-  background: #5d0d57;
+  background: #5d0d57cc;
   color: #ef9ce5;
 }
 
@@ -159,13 +168,12 @@ section {
   height: 100%;
   align-items: center;
   text-align: center;
-  z-index: 1;
   padding: 1rem 2rem;
   background: #242424cc;
 }
 
 .what-is-zeal {
-  background: #3b3b3b;
+  background: #3b3b3bcc;
   color: #b8b8b8;
 }
 
