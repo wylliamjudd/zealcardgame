@@ -89,7 +89,6 @@
 .lunari-section,
 .magi-section,
 .specter-section {
-  height: 50vh;
   display: flex;
   * {
     flex: 1;
@@ -121,7 +120,9 @@
 
   .cognoid-section,
   .magi-section {
-    object-position: left;
+    img {
+      object-position: left;
+    }
   }
 }
 
