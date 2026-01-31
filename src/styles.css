@@ -336,18 +336,11 @@ a {
 .how-to-play {
   text-align: center;
   padding: 24px;
-  ::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("/page-texture-light.jpg");
-    background-size: cover;
-    z-index: -1;
-    filter: blur(1px);
-  }
+
+  background-image: url("/page-texture-light.jpg");
+  background-attachment: fixed;
+  background-position: top left;
+  background-size: cover;
   button {
     width: 100%;
     max-width: 816px;
