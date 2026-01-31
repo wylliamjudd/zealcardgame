@@ -6,12 +6,12 @@ export default function HowToPlay() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
 
   return (
     <div className="how-to-play">
       <div className="nav">
-        <img onClick={() => navigateTo("/")} src="small-logo.png" />
+        <img onClick={() => navigateTo("/")} src="/small-logo.png" />
       </div>
       <h1>How To Play Zeal</h1>
       <h1>Your Deck</h1>
@@ -54,7 +54,7 @@ export default function HowToPlay() {
               various effects on the game. Once a device is in play, it stays in
               play until explicitly destroyed.
             </div>
-            <img className="card" src="Zeal9.jpg" />
+            <img className="card" src="/Zeal9.jpg" />
           </div>
         </div>
         <div>
@@ -64,7 +64,7 @@ export default function HowToPlay() {
               Play spells from your hand for an immediate effect. Once a spell
               resolves, put it in your discard.
             </div>
-            <img className="card" src="Zeal62.jpg" />
+            <img className="card" src="/Zeal62.jpg" />
             <div className="card-description">
               <b>Cost and Zeal Cost</b>
               <p>
@@ -83,13 +83,13 @@ export default function HowToPlay() {
         from 1 through 6. When you defeat all of your foe's bases, you win the
         game.
       </div>
-      <img className="bases" src="bases.png" />
+      <img className="bases" src="/bases.png" />
       <h2>Devotion</h2>
       <div className="card-description">
         Each player starts the game with a Devotion dial, set to 0 maximum
         devotion and 0 current devotion.
       </div>
-      <img className="card" src="devotion-dial.png" />
+      <img className="card" src="/devotion-dial.png" />
       <h2>Shuffle and Draw</h2>
       <div className="card-description">
         Shuffle your deck. Determine the first player randomly. The first player

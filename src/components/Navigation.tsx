@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -5,14 +6,23 @@ type Props = {
 };
 
 export default function Navigation({ email }: Props) {
+  const [open, setOpen] = useState(false);
   const navigateTo = useNavigate();
 
   const scrollTo = (destination: string) => {
+    setOpen(false);
     document.querySelector(destination)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${open ? "navigation--open" : ""}`}>
+      <button
+        className="hamburger"
+        aria-expanded={open}
+        onClick={() => setOpen(v => !v)}
+      >
+        {open ? "✕" : "☰"}
+      </button>
       <button className="scroll-button" onClick={() => scrollTo("#about")}>
         Learn more
       </button>
