@@ -22,9 +22,6 @@ export default function PrintNPlaySection({ email }: Props) {
 
   useEffect(() => {
     if (email) getSession();
-    if (window.location.hash === "#print-n-play") {
-      document.querySelector("#print-n-play")?.scrollIntoView();
-    }
   }, [email]);
 
   async function startCheckout() {

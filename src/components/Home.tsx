@@ -19,7 +19,9 @@ export default function Home() {
 
   useEffect(() => {
     getSession();
-  });
+    const { hash } = window.location;
+    if (hash) document.querySelector(hash)?.scrollIntoView();
+  }, []);
 
   return (
     <div>

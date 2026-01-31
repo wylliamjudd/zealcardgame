@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 type Props = {
   email: string | null;
 };
 
 export default function Navigation({ email }: Props) {
+  const navigateTo = useNavigate();
+
   const scrollTo = (destination: string) => {
     document.querySelector(destination)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -22,6 +26,12 @@ export default function Navigation({ email }: Props) {
         onClick={() => scrollTo("#print-n-play")}
       >
         Print & Play
+      </button>
+      <button
+        className="scroll-button"
+        onClick={() => navigateTo("/how-to-play")}
+      >
+        How to Play
       </button>
     </nav>
   );
