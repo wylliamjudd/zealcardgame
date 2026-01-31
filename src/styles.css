@@ -346,7 +346,7 @@ a {
     background-image: url("/page-texture-light.jpg");
     background-size: cover;
     z-index: -1;
-    /* filter: blur(1px); */
+    filter: blur(1px);
   }
   button {
     width: 100%;
