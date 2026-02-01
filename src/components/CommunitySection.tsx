@@ -16,7 +16,7 @@ export default function CommunitySection() {
             <img src="/Discord-Symbol-Blurple.svg" height="24" width="24" />
             <span>Join the Discord Community</span>
           </a>
-          <a className="community-link" href="wylliam@zealcardgame.com">
+          <a className="community-link" href="mailto:wylliam@zealcardgame.com">
             <span className="icon">✉️</span>
             <span>wylliam@zealcardgame.com</span>
           </a>
