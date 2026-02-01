@@ -57,6 +57,7 @@
   z-index: 3;
   margin: 0 auto;
   width: 100%;
+  min-height: 82px;
 
   display: flex;
   justify-content: center;
@@ -84,6 +85,13 @@
   position: relative;
   top: 100vh;
   height: 100vh;
+}
+
+.section-background.half {
+  height: 100%;
+  .background-image {
+    height: 100%;
+  }
 }
 
 .about-section {
@@ -484,4 +492,42 @@ a {
     align-self: center;
     margin-bottom: 0.5rem;
   }
+}
+
+.community-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.community-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.8;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.community-link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.community-link .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-buffer {
+  top: 100vh;
+  position: relative;
+  height: 82px;
+  background-color: black;
 }

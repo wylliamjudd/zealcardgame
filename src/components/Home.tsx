@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import PrintNPlaySection from "./PrintNPlaySection";
 import Navigation from "./Navigation";
+import CommunitySection from "./CommunitySection";
 
 export default function Home() {
   const [email, setEmail] = useState<string | null>(null);
@@ -31,6 +32,8 @@ export default function Home() {
       {email ? null : <SignUpSection />}
       <PrintNPlaySection email={email} />
       <Navigation email={email} />
+      <CommunitySection />
+      <div className="bottom-buffer" />
     </div>
   );
 }

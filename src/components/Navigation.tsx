@@ -37,6 +37,9 @@ export default function Navigation({ email }: Props) {
       >
         Print & Play
       </button>
+      <button className="scroll-button" onClick={() => scrollTo("#community")}>
+        Community
+      </button>
       <button
         className="scroll-button"
         onClick={() => navigateTo("/how-to-play")}
