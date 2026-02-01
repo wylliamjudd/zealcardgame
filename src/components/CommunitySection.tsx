@@ -10,7 +10,7 @@ export default function CommunitySection() {
         <div className="community-links">
           <a
             className="community-link"
-            href="https://discord.gg/RskmTA3u"
+            href="https://discord.gg/QszUx3PVw7"
             target="_blank"
           >
             <img src="/Discord-Symbol-Blurple.svg" height="24" width="24" />
